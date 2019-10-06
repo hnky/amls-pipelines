@@ -28,7 +28,7 @@ source_dataset = DataPath(datastore=source_ds, path_on_datastore="trainingdata")
 source_dataset_param = (PipelineParameter(name="source_dataset",default_value=source_dataset),
                           DataPathComputeBinding())
 
-script_folder = "./trainingscripts"
+script_folder = "./steps"
 
 # == Step 1 ==
 cd = CondaDependencies.create(pip_packages=["azureml-sdk","opencv-python"])
@@ -81,7 +81,7 @@ trainOnGpuStep = EstimatorStep(
 )
 
 # == Step 3 ==
-model_name = "MargeOrHome"
+model_name = "MargeOrHomer"
 model_id = PipelineData(name="modelId", datastore=training_ds)
 
 registerStep = PythonScriptStep(name="Register model for deployment",
