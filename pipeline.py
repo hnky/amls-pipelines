@@ -94,8 +94,6 @@ registerStep = PythonScriptStep(name="Register model for deployment",
                             outputs=[model_id],
                             source_directory=script_folder)
 
-
-
 # Create the pipeline
 prep_train_register = [preProcessDataStep,trainOnGpuStep,registerStep]
 pipeline = Pipeline(workspace=ws, steps=[prep_train_register])
