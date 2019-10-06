@@ -19,5 +19,8 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'pip install requirements.txt'
+    script: |
+      pip install azure-cli
+      pip install --upgrade azureml-sdk[cli]
+
 
