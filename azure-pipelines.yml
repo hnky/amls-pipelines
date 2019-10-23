@@ -16,6 +16,7 @@ steps:
     versionSpec: '3.6'
     addToPath: true
     architecture: 'x64'  
+    
 - task: Bash@3
   inputs:
     targetType: 'inline'
