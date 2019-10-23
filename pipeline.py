@@ -58,7 +58,7 @@ script_params = [
     "--output-folder", model,
     "--pic-size",64,
     "--batch-size",32,
-    "--epochs",15
+    "--epochs",10
 ]
 
 trainEstimator = TensorFlow(
