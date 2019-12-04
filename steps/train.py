@@ -24,8 +24,6 @@ from azureml.core import Run
 ### Add run context for AML
 run = Run.get_context()
 
-
-
 ### Less characters
 map_characters = {0:"marge_simpson", 1: "homer_simpson" }
 
@@ -263,8 +261,13 @@ if __name__ == '__main__':
     model, history = training(model, X_train, X_test, y_train, y_test, data_augmentation=False)
 
     ## Save the outputs
-    os.makedirs(output_path, exist_ok=True)
     model_json = model.to_json()
+
+    os.makedirs(output_path, exist_ok=True)
     with open(output_path+"/simple_model.json", "w") as json_file:
         json_file.write(model_json)
     model.save_weights(output_path+"/simple_model.h5")
+
+    with open("./outputs/simple_model.json", "w") as json_file:
+        json_file.write(model_json)
+    model.save_weights("./outputs/simple_model.h5")

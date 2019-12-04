@@ -62,14 +62,14 @@ script_params = [
 ]
 
 trainEstimator = TensorFlow(
-                 source_directory = script_folder,
-                 compute_target = computeCluster,
-                 entry_script = "train.py", 
-                 use_gpu = True,
-                 use_docker = True,
-                 conda_packages=["keras==2.2.2","opencv==3.4.2","scikit-learn"],
-                 framework_version="1.10"
-            )
+    source_directory = script_folder,
+    compute_target = computeCluster,
+    entry_script = "train.py", 
+    use_gpu = True,
+    use_docker = True,
+    conda_packages=["keras==2.2.2","opencv==3.4.2","scikit-learn"],
+    framework_version="1.10"
+)
 
 trainOnGpuStep = EstimatorStep(
     name='Train Estimator Step',
@@ -82,7 +82,6 @@ trainOnGpuStep = EstimatorStep(
 
 # == Step 3 ==
 model_name = "MargeOrHomer"
-model_id = PipelineData(name="modelId", datastore=training_ds)
 
 registerStep = PythonScriptStep(name="Register model for deployment",
                             script_name="register.py",
@@ -91,7 +90,6 @@ registerStep = PythonScriptStep(name="Register model for deployment",
                             arguments=['--dataset_name', model_name,
                                        '--model_assets_path', model
                                       ],
-                            outputs=[model_id],
                             source_directory=script_folder)
 
 # Create the pipeline
